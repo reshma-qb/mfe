@@ -6,7 +6,9 @@ const packageJson = require('../package.json');
 const prodConfig = {
     mode: 'production',
     output: {
-        filename: '[name].[contenthash].js'
+        filename: '[name].[contenthash].js',
+        // html plugin will fetch the remoteEntry file from s3 bucket using this path
+        publicPath: '/marketing/latest/'
     },
     plugins: [
         new ModuleFederationPlugin({

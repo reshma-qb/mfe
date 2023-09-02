@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
-import { mount } from 'marketing/MarketingApp';
+import { mount } from 'auth/AuthApp';
 import { useHistory } from 'react-router-dom';
 
-export default () => {
+export default ({ onSignIn }) => {
     const ref = useRef(null);
     const history = useHistory();
 
@@ -10,6 +10,7 @@ export default () => {
         console.log("ref.cur", ref.current)
         const { onParentNavigate } = mount(ref.current, {
             initialPath: history.location.pathname,
+            
             // Scenario #Any clicks happened on Marketing application
             // # It will communicate the change to container
             // # containers brower history should update it's current path.
@@ -25,6 +26,7 @@ export default () => {
                     history.push(nextPathname);
                 }
             },
+            onSignIn
         });
         
         // this helps to find any chnage in container navigation or in browser history

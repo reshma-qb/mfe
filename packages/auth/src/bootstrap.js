@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import { createMemoryHistory, createBrowserHistory } from 'history';
 import App from './App';
 
-console.log("Marketing!")
+console.log("Auth!")
 
 // Mount function to mount the elements in browser
 
-const mount = (element, { onNavigate, defaultHistory, initialPath }) => {
+const mount = (element, { onNavigate, onSignIn, defaultHistory, initialPath }) => {
     const history = defaultHistory || createMemoryHistory({
         initialEntries: [initialPath]
     });
@@ -20,7 +20,7 @@ const mount = (element, { onNavigate, defaultHistory, initialPath }) => {
 
     // to render the marketing home page and pricing page.
     ReactDOM.render(
-        <App history={history} />, 
+        <App onSignIn={onSignIn} history={history} />, 
         element
     );
 
@@ -43,7 +43,7 @@ const mount = (element, { onNavigate, defaultHistory, initialPath }) => {
 // jst mount the element
 
 if (process.env.NODE_ENV === 'development') {
-    const element = document.querySelector('div#marketing-dev');
+    const element = document.querySelector('div#auth-dev');
     if (element) {
         mount(element, { defaultHistory: createBrowserHistory() });
     }
